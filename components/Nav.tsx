@@ -68,10 +68,9 @@ export default function Nav() {
             <Image
               src="/logo.png"
               alt="Produce World Logo"
-              width={44}
-              height={44}
-              className="object-contain transition-opacity duration-300"
-              style={{ filter: scrolled ? "none" : "brightness(0) invert(1)" }}
+              width={52}
+              height={52}
+              className="object-contain drop-shadow-md"
             />
           </a>
 
