@@ -64,7 +64,7 @@ export default function Hero() {
           className="font-dm-sans text-xs tracking-widest uppercase mb-8"
           style={{ color: "rgba(201,168,76,0.9)", letterSpacing: "0.28em" }}
         >
-          Est. {STORE.established} &nbsp;·&nbsp; Albany Park, Chicago
+          Est. {STORE.established} &nbsp;·&nbsp; Norridge, IL
         </motion.p>
 
         {/* Main Heading */}

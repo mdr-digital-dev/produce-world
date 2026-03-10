@@ -26,21 +26,23 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Produce World | Albany Park, Chicago",
+  title: "Produce World | Fresh Market in Norridge, IL",
   description:
-    "Chicago's premier international produce market. Thirty years of fresh Mediterranean, Greek, Italian, Serbian, and Balkan imports in the heart of Albany Park.",
+    "Norridge's premier international produce market. Thirty years of fresh Mediterranean, Greek, Italian, Serbian, and Balkan specialty produce at 8325 W Lawrence Ave.",
   keywords: [
-    "produce market Chicago",
-    "Mediterranean produce",
-    "Greek market Chicago",
-    "Albany Park grocery",
+    "produce market Norridge IL",
+    "grocery store Norridge",
+    "Mediterranean produce Chicago",
+    "Greek market Chicago suburbs",
+    "international grocery Norridge",
+    "fresh produce 8325 W Lawrence Ave",
     "Balkan food Chicago",
-    "international market",
+    "European grocery near me",
   ],
   openGraph: {
-    title: "Produce World | Albany Park, Chicago",
+    title: "Produce World | Fresh Market in Norridge, IL",
     description:
-      "Fresh. Family. Thirty Years Strong. Chicago's premier international produce market.",
+      "Fresh. Family. Thirty Years Strong. Norridge's premier international produce market at 8325 W Lawrence Ave.",
     type: "website",
   },
 };

@@ -181,7 +181,7 @@ export default function Footer() {
           className="font-dm-sans font-light text-xs"
           style={{ color: "rgba(245,240,232,0.35)", letterSpacing: "0.1em" }}
         >
-          © {year} {STORE.name}. All rights reserved. &nbsp;·&nbsp; Albany Park, Chicago, IL
+          © {year} {STORE.name}. All rights reserved. &nbsp;·&nbsp; Norridge, IL, IL
         </p>
       </div>
     </footer>

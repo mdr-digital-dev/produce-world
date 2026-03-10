@@ -2,15 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Color Variables ─── */
+/* ─── Color Variables (oklch modern color system) ─── */
 :root {
-  --cream: #F5F0E8;
-  --ivory: #FDFAF4;
-  --forest: #2C3B2D;
-  --terracotta: #B85C38;
-  --gold: #C9A84C;
-  --charcoal: #1A1A1A;
-  --mist: #E8E2D9;
+  /* Brand palette */
+  --cream:      oklch(0.964 0.015 85);
+  --ivory:      oklch(0.988 0.008 90);
+  --forest:     oklch(0.310 0.045 145);
+  --terracotta: oklch(0.530 0.115 38);
+  --gold:       oklch(0.740 0.095 78);
+  --charcoal:   oklch(0.145 0 0);
+  --mist:       oklch(0.920 0.014 85);
+
+  /* Semantic aliases */
+  --background: var(--cream);
+  --foreground:  var(--charcoal);
+  --primary:     var(--forest);
+  --accent:      var(--terracotta);
+  --highlight:   var(--gold);
+  --surface:     var(--ivory);
+  --border:      var(--mist);
+
+  /* Spacing scale */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  2rem;
+  --space-xl:  4rem;
+  --space-2xl: 8rem;
+
+  /* Typography scale */
+  --text-xs:   0.6875rem;
+  --text-sm:   0.8125rem;
+  --text-base: 0.9375rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.375rem;
+
+  /* Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+
+  /* Shadows (subtle, 2-layer) */
+  --shadow-sm: 0 1px 3px oklch(0.145 0 0 / 0.08), 0 1px 2px oklch(0.145 0 0 / 0.06);
+  --shadow-md: 0 4px 12px oklch(0.145 0 0 / 0.10), 0 2px 4px oklch(0.145 0 0 / 0.06);
+  --shadow-lg: 0 16px 40px oklch(0.145 0 0 / 0.12), 0 4px 8px oklch(0.145 0 0 / 0.08);
+
+  /* Transitions */
+  --transition-fast:   150ms ease-out;
+  --transition-base:   250ms ease-out;
+  --transition-slow:   400ms ease-out;
 }
 
 /* ─── Base Reset ─── */

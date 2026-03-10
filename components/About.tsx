@@ -96,7 +96,7 @@ export default function About() {
             >
               The Heartbeat of
               <br />
-              Albany Park
+              Norridge, IL
             </motion.h2>
 
             <motion.p
@@ -104,7 +104,7 @@ export default function About() {
               className="font-dm-sans font-light mb-5 text-charcoal"
               style={{ lineHeight: "1.85", fontSize: "15px" }}
             >
-              For over thirty years, our family has been the heartbeat of Albany Park&apos;s
+              For over thirty years, our family has been the heartbeat of Norridge&apos;s
               international food community. What started as a small stand has grown into
               Chicago&apos;s most beloved source for Mediterranean, Greek, Italian, Serbian,
               and Balkan specialty produce.

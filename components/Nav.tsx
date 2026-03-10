@@ -168,7 +168,7 @@ export default function Nav() {
             transitionDelay: "0.4s",
           }}
         >
-          Est. {STORE.established} · Albany Park, Chicago
+          Est. {STORE.established} · Norridge, IL
         </p>
       </div>
     </>
