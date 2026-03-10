@@ -105,6 +105,6 @@ export const GALLERY_IMAGES = [
   { id: "1464965911861-746a04b4bca6", alt: "Figs and pomegranates" },
   { id: "1506617564039-2f3b650b7010", alt: "Vibrant market produce overhead" },
   { id: "1540420773420-3366772f4999", alt: "Artichokes and fresh greens" },
-  { id: "1556909114-f6e7ad7d3136", alt: "Fresh herbs and Mediterranean spices" },
+  { id: "1518977822534-7049a61ee0c2", alt: "Fresh herbs and Mediterranean spices" },
   { id: "1592924357228-91a4daadcfea", alt: "Heirloom tomatoes warm light" },
 ];
