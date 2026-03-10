@@ -70,7 +70,7 @@ export default function Gallery() {
       >
         {/* Preload all images off-screen */}
         <div className="hidden">
-          {GALLERY_IMAGES.map((img, i) => (
+          {GALLERY_IMAGES.map((img) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img key={img.id} src={getUrl(img.id)} alt="" />
           ))}
