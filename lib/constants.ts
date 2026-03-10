@@ -101,10 +101,12 @@ export const REVIEWS = [
 
 // ─── Gallery Images ───────────────────────────────────────────────────────────
 export const GALLERY_IMAGES = [
-  { id: "1488459716781-6eddbe0f8e41", alt: "Fresh colorful peppers and eggplant" },
-  { id: "1464965911861-746a04b4bca6", alt: "Figs and pomegranates" },
+  { id: "1488459716781-6eddbe0f8e41", alt: "Fresh colorful peppers and vegetables" },
   { id: "1506617564039-2f3b650b7010", alt: "Vibrant market produce overhead" },
+  { id: "1542838132-92b4e9d7fe94", alt: "Fresh market vegetables" },
   { id: "1540420773420-3366772f4999", alt: "Artichokes and fresh greens" },
-  { id: "1518977822534-7049a61ee0c2", alt: "Fresh herbs and Mediterranean spices" },
-  { id: "1592924357228-91a4daadcfea", alt: "Heirloom tomatoes warm light" },
+  { id: "1519996409144-bed77a71b26b", alt: "Colorful fresh fruits" },
+  { id: "1610832958506-aaebb4f70b15", alt: "Fresh produce display" },
+  { id: "1467019972604-a73abf3a38b8", alt: "Mediterranean specialty items" },
+  { id: "1550258987-190a2d41a8ba", alt: "Heirloom tomatoes warm light" },
 ];

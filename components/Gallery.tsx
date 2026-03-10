@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { GALLERY_IMAGES } from "@/lib/constants";
 
 export default function Gallery() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [loaded, setLoaded] = useState<boolean[]>(new Array(GALLERY_IMAGES.length).fill(false));
   const total = GALLERY_IMAGES.length;
 
   const next = useCallback(() => {
@@ -20,11 +20,19 @@ export default function Gallery() {
     setCurrent((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // Auto-advance every 4s
+  // Auto-advance every 5s
   useEffect(() => {
-    const timer = setInterval(next, 4000);
+    const timer = setInterval(next, 5000);
     return () => clearInterval(timer);
   }, [next]);
+
+  const markLoaded = (i: number) => {
+    setLoaded((prev) => {
+      const next = [...prev];
+      next[i] = true;
+      return next;
+    });
+  };
 
   const variants = {
     enter: (dir: number) => ({
@@ -34,20 +42,23 @@ export default function Gallery() {
     center: {
       x: 0,
       opacity: 1,
-      transition: { duration: 0.55, ease: [0.32, 0.72, 0, 1] },
+      transition: { duration: 0.6, ease: [0.32, 0.72, 0, 1] },
     },
     exit: (dir: number) => ({
       x: dir > 0 ? "-100%" : "100%",
       opacity: 0,
-      transition: { duration: 0.45, ease: [0.32, 0.72, 0, 1] },
+      transition: { duration: 0.5, ease: [0.32, 0.72, 0, 1] },
     }),
   };
+
+  const getUrl = (id: string) =>
+    `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=1800&q=95`;
 
   return (
     <section className="w-full" style={{ backgroundColor: "#1A1A1A" }}>
       {/* Section Label */}
       <div className="text-center py-10" style={{ backgroundColor: "#F5F0E8" }}>
-        <div className="flex items-center justify-center gap-3 mb-2">
+        <div className="flex items-center justify-center gap-3">
           <div className="w-16 h-px" style={{ backgroundColor: "#C9A84C", opacity: 0.5 }} />
           <span
             className="font-dm-sans text-xs tracking-widest uppercase"
@@ -60,7 +71,23 @@ export default function Gallery() {
       </div>
 
       {/* Carousel */}
-      <div className="relative overflow-hidden" style={{ height: "clamp(320px, 50vw, 600px)" }}>
+      <div
+        className="relative overflow-hidden w-full"
+        style={{ height: "clamp(300px, 55vw, 650px)" }}
+      >
+        {/* Preload all images off-screen */}
+        <div className="hidden">
+          {GALLERY_IMAGES.map((img, i) => (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              key={img.id}
+              src={getUrl(img.id)}
+              alt=""
+              onLoad={() => markLoaded(i)}
+            />
+          ))}
+        </div>
+
         <AnimatePresence custom={direction} initial={false}>
           <motion.div
             key={current}
@@ -71,29 +98,28 @@ export default function Gallery() {
             exit="exit"
             className="absolute inset-0"
           >
-            <Image
-              src={`https://images.unsplash.com/photo-${GALLERY_IMAGES[current].id}?auto=format&fit=crop&w=1600&q=90`}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={getUrl(GALLERY_IMAGES[current].id)}
               alt={GALLERY_IMAGES[current].alt}
-              fill
-              className="object-cover"
-              style={{ filter: "brightness(0.85) saturate(1.1)" }}
-              priority={current === 0}
+              className="w-full h-full object-cover"
+              style={{ filter: "brightness(0.82) saturate(1.15)" }}
             />
 
-            {/* Gradient overlay */}
+            {/* Bottom gradient */}
             <div
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(to top, rgba(26,26,26,0.7) 0%, transparent 50%)",
+                  "linear-gradient(to top, rgba(26,26,26,0.75) 0%, transparent 55%)",
               }}
             />
 
             {/* Caption */}
-            <div className="absolute bottom-8 left-0 right-0 text-center">
+            <div className="absolute bottom-8 left-0 right-0 text-center px-6">
               <p
                 className="font-dm-sans uppercase tracking-widest"
-                style={{ color: "#C9A84C", fontSize: "10px", letterSpacing: "0.24em" }}
+                style={{ color: "#C9A84C", fontSize: "10px", letterSpacing: "0.26em" }}
               >
                 {GALLERY_IMAGES[current].alt}
               </p>
@@ -101,17 +127,17 @@ export default function Gallery() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Prev Button */}
+        {/* Prev */}
         <button
           onClick={prev}
           aria-label="Previous photo"
-          className="absolute left-5 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center transition-all duration-200 hover:scale-110"
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95"
           style={{
-            width: "44px",
-            height: "44px",
+            width: "48px",
+            height: "48px",
             border: "1.5px solid rgba(201,168,76,0.6)",
             borderRadius: "50%",
-            backgroundColor: "rgba(26,26,26,0.5)",
+            backgroundColor: "rgba(26,26,26,0.55)",
             color: "#C9A84C",
           }}
         >
@@ -120,17 +146,17 @@ export default function Gallery() {
           </svg>
         </button>
 
-        {/* Next Button */}
+        {/* Next */}
         <button
           onClick={next}
           aria-label="Next photo"
-          className="absolute right-5 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center transition-all duration-200 hover:scale-110"
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95"
           style={{
-            width: "44px",
-            height: "44px",
+            width: "48px",
+            height: "48px",
             border: "1.5px solid rgba(201,168,76,0.6)",
             borderRadius: "50%",
-            backgroundColor: "rgba(26,26,26,0.5)",
+            backgroundColor: "rgba(26,26,26,0.55)",
             color: "#C9A84C",
           }}
         >
@@ -139,8 +165,8 @@ export default function Gallery() {
           </svg>
         </button>
 
-        {/* Dot Navigation */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2">
+        {/* Dots */}
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10 flex gap-2 items-center">
           {GALLERY_IMAGES.map((_, i) => (
             <button
               key={i}
@@ -150,14 +176,15 @@ export default function Gallery() {
               }}
               aria-label={`Go to photo ${i + 1}`}
               style={{
-                width: i === current ? "24px" : "8px",
+                width: i === current ? "28px" : "8px",
                 height: "8px",
                 borderRadius: "4px",
-                backgroundColor: i === current ? "#C9A84C" : "rgba(201,168,76,0.35)",
+                backgroundColor:
+                  i === current ? "#C9A84C" : "rgba(201,168,76,0.35)",
                 border: "none",
                 padding: 0,
                 cursor: "pointer",
-                transition: "all 0.3s ease",
+                transition: "all 0.35s ease",
               }}
             />
           ))}
@@ -166,7 +193,11 @@ export default function Gallery() {
         {/* Counter */}
         <div
           className="absolute top-5 right-5 z-10 font-dm-sans"
-          style={{ color: "rgba(201,168,76,0.7)", fontSize: "11px", letterSpacing: "0.1em" }}
+          style={{
+            color: "rgba(201,168,76,0.75)",
+            fontSize: "11px",
+            letterSpacing: "0.1em",
+          }}
         >
           {String(current + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
         </div>
