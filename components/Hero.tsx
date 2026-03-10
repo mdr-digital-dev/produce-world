@@ -61,8 +61,8 @@ export default function Hero() {
         {/* Eyebrow */}
         <motion.p
           variants={fadeUp}
-          className="font-dm-sans text-xs tracking-widest uppercase mb-8"
-          style={{ color: "rgba(201,168,76,0.9)", letterSpacing: "0.28em" }}
+          className="font-dm-sans tracking-widest uppercase mb-8"
+          style={{ color: "rgba(201,168,76,0.9)", letterSpacing: "0.28em", fontSize: "14px" }}
         >
           Est. {STORE.established} &nbsp;·&nbsp; Norridge, IL
         </motion.p>
@@ -89,7 +89,7 @@ export default function Hero() {
         <motion.p
           variants={fadeUp}
           className="font-dm-sans font-light tracking-widest uppercase text-ivory mb-12 max-w-sm"
-          style={{ fontSize: "11px", letterSpacing: "0.22em", opacity: 0.85 }}
+          style={{ fontSize: "15px", letterSpacing: "0.18em", opacity: 0.85 }}
         >
           Chicago&apos;s Premier International Produce Market
         </motion.p>
