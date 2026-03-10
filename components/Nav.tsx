@@ -62,16 +62,26 @@ export default function Nav() {
           {/* Logo */}
           <a
             href="#home"
-            className="flex items-center gap-2 group"
+            className="flex items-center gap-3 group"
             onClick={() => handleNavClick("#home")}
           >
             <Image
               src="/logo.png"
               alt="Produce World Logo"
-              width={52}
-              height={52}
+              width={48}
+              height={48}
               className="object-contain drop-shadow-md"
             />
+            <span
+              className="font-cormorant font-semibold tracking-wide transition-colors duration-300"
+              style={{
+                fontSize: "clamp(20px, 2vw, 26px)",
+                color: scrolled ? "#C9A84C" : "#FFFFFF",
+                textShadow: scrolled ? "none" : "0 1px 4px rgba(0,0,0,0.4)",
+              }}
+            >
+              Produce World
+            </span>
           </a>
 
           {/* Desktop Links */}
