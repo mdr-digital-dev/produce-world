@@ -7,7 +7,7 @@ import { GALLERY_IMAGES } from "@/lib/constants";
 export default function Gallery() {
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [loaded, setLoaded] = useState<boolean[]>(new Array(GALLERY_IMAGES.length).fill(false));
+
   const total = GALLERY_IMAGES.length;
 
   const next = useCallback(() => {
@@ -26,13 +26,6 @@ export default function Gallery() {
     return () => clearInterval(timer);
   }, [next]);
 
-  const markLoaded = (i: number) => {
-    setLoaded((prev) => {
-      const next = [...prev];
-      next[i] = true;
-      return next;
-    });
-  };
 
   const variants = {
     enter: (dir: number) => ({
@@ -79,12 +72,7 @@ export default function Gallery() {
         <div className="hidden">
           {GALLERY_IMAGES.map((img, i) => (
             // eslint-disable-next-line @next/next/no-img-element
-            <img
-              key={img.id}
-              src={getUrl(img.id)}
-              alt=""
-              onLoad={() => markLoaded(i)}
-            />
+            <img key={img.id} src={getUrl(img.id)} alt="" />
           ))}
         </div>
 
