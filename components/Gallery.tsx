@@ -35,12 +35,12 @@ export default function Gallery() {
     center: {
       x: 0,
       opacity: 1,
-      transition: { duration: 0.6, ease: [0.32, 0.72, 0, 1] },
+      transition: { duration: 0.6, ease: "easeInOut" as const },
     },
     exit: (dir: number) => ({
       x: dir > 0 ? "-100%" : "100%",
       opacity: 0,
-      transition: { duration: 0.5, ease: [0.32, 0.72, 0, 1] },
+      transition: { duration: 0.5, ease: "easeInOut" as const },
     }),
   };
 
