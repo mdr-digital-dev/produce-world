@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
@@ -34,49 +34,6 @@ function SectionDivider() {
 }
 
 export default function Home() {
-  // Custom cursor — desktop only
-  useEffect(() => {
-    if (window.innerWidth < 768) return;
-
-    const dot = document.createElement("div");
-    dot.className = "cursor-dot";
-    const ring = document.createElement("div");
-    ring.className = "cursor-ring";
-    document.body.appendChild(dot);
-    document.body.appendChild(ring);
-
-    let mouseX = 0,
-      mouseY = 0;
-    let ringX = 0,
-      ringY = 0;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.left = `${mouseX}px`;
-      dot.style.top = `${mouseY}px`;
-    };
-
-    let raf: number;
-    const animateRing = () => {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      ring.style.left = `${ringX}px`;
-      ring.style.top = `${ringY}px`;
-      raf = requestAnimationFrame(animateRing);
-    };
-    animateRing();
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(raf);
-      dot.remove();
-      ring.remove();
-    };
-  }, []);
-
   return (
     <>
       <Nav />
