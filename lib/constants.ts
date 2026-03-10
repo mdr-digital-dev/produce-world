@@ -101,12 +101,14 @@ export const REVIEWS = [
 
 // ─── Gallery Images ───────────────────────────────────────────────────────────
 export const GALLERY_IMAGES = [
-  { id: "1488459716781-6eddbe0f8e41", alt: "Fresh colorful peppers and vegetables" },
   { id: "1506617564039-2f3b650b7010", alt: "Vibrant market produce overhead" },
-  { id: "1471193945891-364f17a6e64e", alt: "Colorful fresh fruit market" },
   { id: "1518843875459-f738682238a6", alt: "Family market fresh produce" },
   { id: "1574226516831-e1dff420e562", alt: "Colorful vegetables and herbs" },
-  { id: "1563746924-9e3a2e8f3ca2", alt: "Mediterranean olives and specialties" },
-  { id: "1598170845058-32b9d6a5da37", alt: "Heirloom tomatoes warm light" },
+  { id: "1550258987-190a2d41a8ba", alt: "Heirloom tomatoes warm light" },
+  { id: "1540420773420-3366772f4999", alt: "Artichokes and fresh greens" },
+  { id: "1464965911861-746a04b4bca6", alt: "Figs and pomegranates" },
+  { id: "1601493700631-2b16ec4b4716", alt: "Fresh Mediterranean produce" },
+  { id: "1592924357228-91a4daadcfea", alt: "Fresh market selection" },
+  { id: "1584270354949-c26b0d5b4a0c", alt: "Fresh herbs and spices" },
   { id: "1518977822534-7049a61ee0c2", alt: "Fresh greens and herbs" },
 ];

@@ -68,16 +68,16 @@ export default function Nav() {
             <Image
               src="/logo.png"
               alt="Produce World Logo"
-              width={48}
-              height={48}
+              width={64}
+              height={64}
               className="object-contain drop-shadow-md"
             />
             <span
               className="font-cormorant font-semibold tracking-wide transition-colors duration-300"
               style={{
-                fontSize: "clamp(20px, 2vw, 26px)",
+                fontSize: "clamp(26px, 2.5vw, 36px)",
                 color: scrolled ? "#C9A84C" : "#FFFFFF",
-                textShadow: scrolled ? "none" : "0 1px 4px rgba(0,0,0,0.4)",
+                textShadow: scrolled ? "none" : "0 2px 6px rgba(0,0,0,0.5)",
               }}
             >
               Produce World
