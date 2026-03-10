@@ -6,7 +6,7 @@ import { slideInLeft, fadeUp, staggerContainer } from "@/lib/animations";
 
 export default function About() {
   return (
-    <section id="about" className="relative bg-cream py-24 lg:py-36 overflow-hidden">
+    <section id="about" className="relative bg-cream py-16 lg:py-36 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-[3fr_2fr] gap-0 items-center">
           {/* Image — left, 60% width */}
@@ -16,7 +16,7 @@ export default function About() {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             className="relative"
-            style={{ height: "620px" }}
+            style={{ height: "clamp(320px, 55vw, 620px)" }}
           >
             <div className="relative h-full w-full overflow-hidden" style={{ borderRadius: "0 0 80px 0" }}>
               <Image
@@ -43,11 +43,11 @@ export default function About() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="absolute bottom-10 -right-5 lg:-right-10 bg-forest p-8 text-center z-10"
+              className="absolute bottom-6 right-0 lg:-right-10 bg-forest p-5 lg:p-8 text-center z-10"
               style={{ boxShadow: "0 20px 60px rgba(44,59,45,0.3)" }}
             >
               <p
-                className="font-cormorant italic text-6xl font-light leading-none"
+                className="font-cormorant italic text-4xl lg:text-6xl font-light leading-none"
                 style={{ color: "#C9A84C" }}
               >
                 30+
@@ -67,7 +67,7 @@ export default function About() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            className="relative pl-10 lg:pl-16 pt-10 lg:pt-0"
+            className="relative pl-8 lg:pl-16 pt-12 lg:pt-0"
           >
             {/* Vertical gold line */}
             <div

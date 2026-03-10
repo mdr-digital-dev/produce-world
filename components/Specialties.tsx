@@ -7,7 +7,7 @@ import { SPECIALTIES } from "@/lib/constants";
 
 export default function Specialties() {
   return (
-    <section id="specialties" className="bg-ivory py-24 lg:py-36">
+    <section id="specialties" className="bg-ivory py-16 lg:py-36">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Header */}
         <motion.div
@@ -62,7 +62,7 @@ function SpecialtyCard({
     <motion.div
       variants={fadeUp}
       className="group relative overflow-hidden cursor-pointer"
-      style={{ height: "400px" }}
+      style={{ height: "clamp(260px, 40vw, 400px)" }}
     >
       {/* Image */}
       <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-105">
@@ -110,7 +110,7 @@ function SpecialtyCard({
       </div>
 
       {/* Text */}
-      <div className="absolute bottom-0 left-0 right-0 p-8">
+      <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-8">
         <h3
           className="font-cormorant font-light text-ivory mb-3 leading-tight"
           style={{ fontSize: "clamp(26px, 3vw, 34px)" }}

@@ -36,7 +36,7 @@ export default function Footer() {
       <div className="w-full h-px" style={{ backgroundColor: "#C9A84C", opacity: 0.3 }} />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
           {/* Col 1 — Brand */}
           <div>
             <div className="flex items-center gap-3 mb-5">
@@ -181,7 +181,7 @@ export default function Footer() {
           className="font-dm-sans font-light text-xs"
           style={{ color: "rgba(245,240,232,0.35)", letterSpacing: "0.1em" }}
         >
-          © {year} {STORE.name}. All rights reserved. &nbsp;·&nbsp; Norridge, IL, IL
+          © {year} {STORE.name}. All rights reserved. &nbsp;·&nbsp; Norridge, IL
         </p>
       </div>
     </footer>

@@ -41,7 +41,7 @@ function MailIcon() {
 
 export default function VisitUs() {
   return (
-    <section id="visit" className="bg-cream py-24 lg:py-36">
+    <section id="visit" className="bg-cream py-16 lg:py-36">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Section label */}
         <motion.div
@@ -78,7 +78,7 @@ export default function VisitUs() {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
             className="relative overflow-hidden"
-            style={{ height: "520px" }}
+            style={{ height: "clamp(280px, 50vw, 520px)" }}
           >
             <iframe
               src={STORE.address.embedUrl}
@@ -107,8 +107,7 @@ export default function VisitUs() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
-            className="flex flex-col justify-center pl-0 lg:pl-16 pt-12 lg:pt-0"
-            style={{ height: "520px" }}
+            className="flex flex-col justify-center pl-0 lg:pl-16 pt-10 lg:pt-0"
           >
             {/* Address */}
             <div className="flex gap-4 mb-8">
@@ -201,7 +200,7 @@ export default function VisitUs() {
               href={STORE.address.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-fill inline-flex items-center gap-3 font-dm-sans text-xs tracking-widest uppercase px-8 py-4 border text-charcoal transition-colors duration-300 hover:text-ivory w-fit"
+              className="btn-fill inline-flex items-center justify-center gap-3 font-dm-sans text-xs tracking-widest uppercase px-8 py-4 border text-charcoal transition-colors duration-300 hover:text-ivory w-full lg:w-fit"
               style={{ borderColor: "#2C3B2D", letterSpacing: "0.2em" }}
             >
               Get Directions

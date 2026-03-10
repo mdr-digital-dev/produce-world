@@ -20,7 +20,7 @@ export default function Reviews() {
   return (
     <section
       id="reviews"
-      className="relative py-24 lg:py-36 overflow-hidden"
+      className="relative py-16 lg:py-36 overflow-hidden"
       style={{ backgroundColor: "#2C3B2D" }}
     >
       {/* Subtle background texture */}
@@ -84,7 +84,7 @@ export default function Reviews() {
 
         {/* Review Cards — horizontal scroll */}
         <div
-          className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory"
+          className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory px-1"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {REVIEWS.map((review, i) => (
@@ -95,9 +95,9 @@ export default function Reviews() {
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="snap-start flex-shrink-0 p-8"
+              className="snap-start flex-shrink-0 p-6 lg:p-8"
               style={{
-                width: "clamp(280px, 32vw, 380px)",
+                width: "clamp(260px, 80vw, 380px)",
                 backgroundColor: "rgba(255,255,255,0.07)",
                 backdropFilter: "blur(12px)",
                 border: "1px solid rgba(201,168,76,0.3)",
