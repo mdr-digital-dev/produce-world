@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { STORE } from "@/lib/constants";
 
 const NAV_LINKS = [
@@ -61,20 +62,17 @@ export default function Nav() {
           {/* Logo */}
           <a
             href="#home"
-            className="flex items-center gap-3 group"
+            className="flex items-center gap-2 group"
             onClick={() => handleNavClick("#home")}
           >
-            <LeafSVG
-              className={`w-7 h-7 transition-colors duration-300 ${
-                scrolled ? "text-gold" : "text-gold"
-              }`}
+            <Image
+              src="/logo.png"
+              alt="Produce World Logo"
+              width={44}
+              height={44}
+              className="object-contain transition-opacity duration-300"
+              style={{ filter: scrolled ? "none" : "brightness(0) invert(1)" }}
             />
-            <span
-              className="font-cormorant text-2xl font-semibold tracking-wide transition-colors duration-300"
-              style={{ color: scrolled ? "#C9A84C" : "#FDFAF4" }}
-            >
-              {STORE.name}
-            </span>
           </a>
 
           {/* Desktop Links */}
@@ -160,34 +158,15 @@ export default function Nav() {
             </a>
           ))}
         </nav>
-        <p
-          className="font-dm-sans text-xs tracking-widest uppercase mt-16 transition-all duration-500"
-          style={{
-            color: "rgba(201,168,76,0.6)",
-            opacity: menuOpen ? 1 : 0,
-            transitionDelay: "0.4s",
-          }}
-        >
-          Est. {STORE.established} · Norridge, IL
-        </p>
+        <div className="flex flex-col items-center gap-3 mt-16 transition-all duration-500" style={{ opacity: menuOpen ? 1 : 0, transitionDelay: "0.4s" }}>
+          <Image src="/logo.png" alt="Produce World Logo" width={60} height={60} className="object-contain opacity-80" />
+          <p className="font-dm-sans text-xs tracking-widest uppercase" style={{ color: "rgba(201,168,76,0.6)" }}>
+            Est. {STORE.established} · Norridge, IL
+          </p>
+        </div>
       </div>
     </>
   );
 }
 
-function LeafSVG({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
-      <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
-    </svg>
-  );
-}
+

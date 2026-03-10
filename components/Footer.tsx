@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { STORE } from "@/lib/constants";
 
 const NAV_LINKS = [
@@ -40,24 +41,13 @@ export default function Footer() {
           {/* Col 1 — Brand */}
           <div>
             <div className="flex items-center gap-3 mb-5">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#C9A84C"
-                strokeWidth="1.3"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-6 h-6"
-              >
-                <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
-                <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
-              </svg>
-              <span
-                className="font-cormorant text-2xl font-semibold"
-                style={{ color: "#C9A84C" }}
-              >
-                {STORE.name}
-              </span>
+              <Image
+                src="/logo.png"
+                alt="Produce World Logo"
+                width={52}
+                height={52}
+                className="object-contain"
+              />
             </div>
             <p
               className="font-playfair italic mb-6 leading-relaxed"
