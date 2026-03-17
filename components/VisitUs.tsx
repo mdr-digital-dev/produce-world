@@ -30,14 +30,6 @@ function PhoneIcon() {
   );
 }
 
-function MailIcon() {
-  return (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B85C38" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect width="20" height="16" x="2" y="4" rx="2" />
-      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-    </svg>
-  );
-}
 
 export default function VisitUs() {
   return (
@@ -176,24 +168,7 @@ export default function VisitUs() {
               </div>
             </div>
 
-            {/* Email */}
-            <div className="flex gap-4 mb-10">
-              <div className="flex-shrink-0 pt-0.5">
-                <MailIcon />
-              </div>
-              <div>
-                <p className="font-dm-sans text-xs tracking-widest uppercase mb-1" style={{ color: "#B85C38", letterSpacing: "0.18em" }}>
-                  Email
-                </p>
-                <a
-                  href={`mailto:${STORE.email}`}
-                  className="font-cormorant text-lg font-light animated-link"
-                  style={{ color: "#2C3B2D" }}
-                >
-                  {STORE.email}
-                </a>
-              </div>
-            </div>
+
 
             {/* CTA */}
             <a

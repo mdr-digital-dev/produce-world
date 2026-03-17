@@ -114,7 +114,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href={`https://search.google.com/local/writereview?placeid=${STORE.googlePlaceId}`}
+                href="https://www.google.com/maps/search/Produce+World+8325+W+Lawrence+Ave+Norridge+IL+60706"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="animated-link font-dm-sans font-light text-sm inline-flex items-center gap-2"
@@ -179,20 +179,16 @@ export default function Footer() {
 }
 
 function TodayHours() {
-  const today = new Date().getDay(); // 0=Sun, 6=Sat
-  let hours = { open: "8:00 AM", close: "7:00 PM", label: "Mon – Fri" };
-
-  if (today === 6) {
-    hours = { open: "7:00 AM", close: "7:00 PM", label: "Saturday" };
-  } else if (today === 0) {
-    hours = { open: "8:00 AM", close: "5:00 PM", label: "Sunday" };
-  }
+  // Store hours: 7:30 AM – 9:00 PM every day
+  const hours = { open: "7:30 AM", close: "9:00 PM" };
 
   const now = new Date();
   const currentHour = now.getHours();
-  const openHour = parseInt(hours.open.split(":")[0]) + (hours.open.includes("AM") ? 0 : 12);
-  const closeHour = parseInt(hours.close.split(":")[0]) + (hours.close.includes("AM") ? 0 : 12);
-  const isOpen = currentHour >= openHour && currentHour < closeHour;
+  const currentMin = now.getMinutes();
+  const openHour = 7, openMin = 30;
+  const closeHour = 21, closeMin = 0;
+  const nowMins = currentHour * 60 + currentMin;
+  const isOpen = nowMins >= openHour * 60 + openMin && nowMins < closeHour * 60 + closeMin;
 
   return (
     <div className="flex items-center gap-2">

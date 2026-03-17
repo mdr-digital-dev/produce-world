@@ -13,17 +13,17 @@ export const STORE = {
     zip: "60706",
     googleMapsUrl: "https://maps.google.com/?q=Produce+World+8325+W+Lawrence+Ave+Norridge+IL+60706",
     embedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2970.5!2d-87.8195!3d41.9634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880e4f8b2b2b2b2b%3A0x0!2sProduce+World!5e0!3m2!1sen!2sus!4v1234567890",
+      "https://maps.google.com/maps?q=8325+W+Lawrence+Ave,+Norridge,+IL+60706&output=embed",
   },
   phone: "(708) 452-7400",
-  email: "[YOUR EMAIL ADDRESS]",
+  email: "",
   instagram: "@produce_world_market",
   hours: [
     { day: "Monday – Sunday", open: "7:30 AM", close: "9:00 PM" },
   ],
   googleRating: 4.1,
   googleReviewCount: 900,
-  googlePlaceId: "[YOUR_GOOGLE_PLACE_ID]", // TODO: Replace with real Place ID for Google Places API
+  googlePlaceId: "", // Use address-based review URL
 };
 
 // ─── Specialty Cards ──────────────────────────────────────────────────────────
