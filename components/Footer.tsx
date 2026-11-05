@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { label: "Specialties", href: "#specialties" },
   { label: "Visit Us", href: "#visit" },
   { label: "Reviews", href: "#reviews" },
+  { label: "Pre-Orders", href: "/deli" },
 ];
 
 function LeafWatermark() {

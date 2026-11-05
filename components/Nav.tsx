@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { STORE } from "@/lib/constants";
 
@@ -10,12 +11,20 @@ const NAV_LINKS = [
   { label: "Specialties", href: "#specialties" },
   { label: "Visit Us", href: "#visit" },
   { label: "Reviews", href: "#reviews" },
+  { label: "Pre-Orders", href: "/deli" },
 ];
 
 export default function Nav() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("home");
+
+  function resolveHref(href: string) {
+    if (href.startsWith("#") && !isHome) return `/${href}`;
+    return href;
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +54,7 @@ export default function Nav() {
 
   const handleNavClick = (href: string) => {
     setMenuOpen(false);
-    setActiveLink(href.replace("#", ""));
+    if (href.startsWith("#")) setActiveLink(href.replace("#", ""));
   };
 
   return (
@@ -61,7 +70,7 @@ export default function Nav() {
         <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-20">
           {/* Logo */}
           <a
-            href="#home"
+            href={isHome ? "#home" : "/"}
             className="flex items-center gap-3 group"
             onClick={() => handleNavClick("#home")}
           >
@@ -87,15 +96,22 @@ export default function Nav() {
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-10">
             {NAV_LINKS.map((link) => {
-              const isActive = activeLink === link.href.replace("#", "");
+              const isActive = link.href.startsWith("/")
+                ? pathname === link.href
+                : activeLink === link.href.replace("#", "");
+              const isPreOrders = link.href === "/deli";
               return (
                 <a
                   key={link.label}
-                  href={link.href}
+                  href={resolveHref(link.href)}
                   onClick={() => handleNavClick(link.href)}
                   className="font-dm-sans text-sm font-light tracking-widest uppercase transition-all duration-300 relative pb-1"
                   style={{
-                    color: scrolled ? "#F5F0E8" : "rgba(253, 250, 244, 0.88)",
+                    color: isPreOrders
+                      ? "#C9A84C"
+                      : scrolled
+                      ? "#F5F0E8"
+                      : "rgba(253, 250, 244, 0.88)",
                   }}
                 >
                   {link.label}
@@ -154,7 +170,7 @@ export default function Nav() {
           {NAV_LINKS.map((link, i) => (
             <a
               key={link.label}
-              href={link.href}
+              href={resolveHref(link.href)}
               onClick={() => handleNavClick(link.href)}
               className="font-cormorant text-4xl italic font-light text-ivory transition-all duration-300 hover:text-gold"
               style={{
