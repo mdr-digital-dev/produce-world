@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans, Playfair_Display } from "next/font/google";
+import { BotIdClient } from "botid/client";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -54,6 +55,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Vercel BotID: invisible bot check on the deli order form */}
+        <BotIdClient protect={[{ path: "/api/deli-order", method: "POST" }]} />
+      </head>
       <body
         className={`${cormorant.variable} ${dmSans.variable} ${playfair.variable} antialiased`}
       >

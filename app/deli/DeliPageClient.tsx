@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -13,8 +13,7 @@ type FormState = {
   name: string;
   phone: string;
   email: string;
-  pastitsioQty: number;
-  moussakaQty: number;
+  quantities: Record<string, number>;
   pickupDate: string;
   notes: string;
   website: string; // honeypot
@@ -44,6 +43,10 @@ function formatDate(dateStr: string): string {
     month: "long",
     day: "numeric",
   });
+}
+
+function emptyQuantities(): Record<string, number> {
+  return Object.fromEntries(DELI_PREORDER.products.map((p) => [p.id, 0]));
 }
 
 function todayISO(): string {
@@ -106,8 +109,7 @@ export default function DeliPageClient() {
     name: "",
     phone: "",
     email: "",
-    pastitsioQty: 0,
-    moussakaQty: 0,
+    quantities: emptyQuantities(),
     pickupDate: "",
     notes: "",
     website: "",
@@ -119,6 +121,21 @@ export default function DeliPageClient() {
   const [orderResult, setOrderResult] = useState<OrderResult | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
   const formTopRef = useRef<HTMLDivElement>(null);
+  // Bot signals: when the page loaded, and whether a real person interacted.
+  const loadedAt = useRef<number>(Date.now());
+  const interacted = useRef(false);
+  useEffect(() => {
+    loadedAt.current = Date.now();
+    const mark = () => (interacted.current = true);
+    window.addEventListener("pointerdown", mark, { once: true });
+    window.addEventListener("keydown", mark, { once: true });
+    window.addEventListener("touchstart", mark, { once: true });
+    return () => {
+      window.removeEventListener("pointerdown", mark);
+      window.removeEventListener("keydown", mark);
+      window.removeEventListener("touchstart", mark);
+    };
+  }, []);
 
   function validate(): Record<string, string> {
     const e: Record<string, string> = {};
@@ -128,7 +145,7 @@ export default function DeliPageClient() {
     if (phone.length < 10) e.phone = "Please enter a valid phone number.";
     if (!form.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/))
       e.email = "Please enter a valid email address.";
-    if (form.pastitsioQty === 0 && form.moussakaQty === 0)
+    if (Object.values(form.quantities).every((q) => q === 0))
       e.qty = "Please select at least one item.";
     if (!form.pickupDate) e.pickupDate = "Please select a pickup date.";
     return e;
@@ -148,7 +165,11 @@ export default function DeliPageClient() {
       const res = await fetch("/api/deli-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          elapsedMs: Date.now() - loadedAt.current,
+          interacted: interacted.current,
+        }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? "Something went wrong.");
@@ -167,8 +188,7 @@ export default function DeliPageClient() {
       name: "",
       phone: "",
       email: "",
-      pastitsioQty: 0,
-      moussakaQty: 0,
+      quantities: emptyQuantities(),
       pickupDate: "",
       notes: "",
       website: "",
@@ -211,7 +231,8 @@ export default function DeliPageClient() {
           className="font-dm-sans font-light max-w-2xl mx-auto leading-relaxed"
           style={{ color: "rgba(245,240,232,0.75)", fontSize: "17px" }}
         >
-          Reserve your Pastitsio or Moussaka trays made fresh in our deli.
+          Reserve your Pastitsio, Moussaka or Spinach Pie trays made fresh in
+          our deli.
           Available for pickup at the store — perfect for the holiday table.
         </p>
       </section>
@@ -609,6 +630,12 @@ export default function DeliPageClient() {
                   >
                     Quantities *
                   </p>
+                  <p
+                    className="font-dm-sans font-light text-xs -mt-4 mb-6"
+                    style={{ color: "rgba(26,26,26,0.5)" }}
+                  >
+                    Up to {DELI_PREORDER.maxQtyPerItem} of each item per order.
+                  </p>
                   {errors.qty && (
                     <p
                       className="font-dm-sans text-xs mb-4"
@@ -619,8 +646,6 @@ export default function DeliPageClient() {
                   )}
                   <div className="flex flex-col gap-6">
                     {DELI_PREORDER.products.map((product) => {
-                      const key =
-                        `${product.id}Qty` as "pastitsioQty" | "moussakaQty";
                       return (
                         <div
                           key={product.id}
@@ -641,10 +666,13 @@ export default function DeliPageClient() {
                             </p>
                           </div>
                           <QtySelector
-                            value={form[key]}
+                            value={form.quantities[product.id] ?? 0}
                             max={DELI_PREORDER.maxQtyPerItem}
                             onChange={(v) =>
-                              setForm({ ...form, [key]: v })
+                              setForm({
+                                ...form,
+                                quantities: { ...form.quantities, [product.id]: v },
+                              })
                             }
                           />
                         </div>
