@@ -6,36 +6,31 @@ unavailable, please call the deli"** instead of pretending the order went throug
 DNS for produceworldil.com is at **GoDaddy** (nameservers ns33/ns34.domaincontrol.com).
 The site's A record points to Vercel (76.76.21.21) — don't touch it.
 
-## 1. Make deli@produceworldil.com a real inbox (receive AND reply) — Zoho Mail Free
+## 1. Make deli@produceworldil.com a real inbox (receives the orders)
 
-Free for up to 5 users on one domain. Staff use the Zoho Mail app (iOS/Android) or mail.zoho.com.
-(The free plan can't connect to Gmail/Outlook/Apple Mail apps.)
-
-1. Go to zoho.com/mail → **Forever Free** plan → sign up with `produceworldil.com` ("I already own a domain").
-2. Zoho asks you to verify the domain: it gives you a **TXT** record (`zoho-verification=...`). Add it in
-   GoDaddy → My Products → produceworldil.com → DNS, then click Verify in Zoho.
-3. Create the mailboxes (up to 5), e.g. `deli@`, `zach@`. Extra names can be aliases on an existing user.
-4. Add these in GoDaddy DNS (first delete any old MX records on `@`, e.g. GoDaddy secureserver.net ones):
+**Free option: ImprovMX forwarding** (deli@ → an existing Gmail)
+1. Sign up at improvmx.com, add `produceworldil.com`, create alias `deli` → the Gmail that should get orders.
+2. In GoDaddy → My Products → produceworldil.com → DNS, add:
 
 | Type | Name | Value | Priority |
 |------|------|-------|----------|
-| MX | @ | mx.zoho.com | 10 |
-| MX | @ | mx2.zoho.com | 20 |
-| MX | @ | mx3.zoho.com | 50 |
-| TXT | @ | `v=spf1 include:zohomail.com ~all` | — |
+| MX | @ | mx1.improvmx.com | 10 |
+| MX | @ | mx2.improvmx.com | 20 |
+| TXT | @ | `v=spf1 include:spf.improvmx.com ~all` | — |
 
-   Only one SPF (`v=spf1`) TXT on `@` is allowed — merge if one exists.
-5. In Zoho admin → Domains → produceworldil.com → **DKIM**: generate a key and add the TXT record it shows.
-6. Send a test email to deli@produceworldil.com and reply from it.
+   First delete any existing GoDaddy MX records (if GoDaddy shows "Workspace Email" / secureserver.net
+   MX records and nobody uses that email). If there's already an SPF TXT (`v=spf1 ...`) on `@`,
+   merge into it rather than adding a second one.
+3. Send a test email to deli@produceworldil.com.
 
-Use the **US** records above (mx.zoho.com). If Zoho shows .eu/.in records, use exactly what it shows.
+Upgrade later: Google Workspace (~$7/user/mo) if Zach wants to *reply as* deli@.
 
 ## 2. Let the website send the order emails (Resend)
 
 1. Sign up at resend.com → Domains → Add `produceworldil.com`.
 2. Resend shows ~3 records (a DKIM TXT `resend._domainkey`, plus an MX and SPF TXT on the `send`
    subdomain). Add them in GoDaddy DNS exactly as shown. They live on `send.` / `resend._domainkey`,
-   so they don't clash with the Zoho records on `@`.
+   so they don't clash with the ImprovMX records on `@`.
 3. Wait for Resend to say **Verified**, then API Keys → create a key with "Sending access".
 
 ## 3. Add the settings in Vercel
